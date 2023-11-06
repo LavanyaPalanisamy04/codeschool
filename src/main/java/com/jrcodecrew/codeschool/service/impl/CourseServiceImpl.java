@@ -1,11 +1,15 @@
 package com.jrcodecrew.codeschool.service.impl;
 
+import com.jrcodecrew.codeschool.dto.CourseDto;
+import com.jrcodecrew.codeschool.model.AgeGroup;
 import com.jrcodecrew.codeschool.model.Course;
 import com.jrcodecrew.codeschool.repository.CourseRepository;
 import com.jrcodecrew.codeschool.service.CourseService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -18,23 +22,34 @@ public class CourseServiceImpl implements CourseService {
   }
 
   @Override
-  public Course addCourse(Course course) {
+  public Course addCourse(CourseDto courseDto) {
     Course addedCourse =
         new Course(
-            course.getCourse_id(),
-            course.getCourseName(),
-            course.getDescription(),
-            course.getAgeGroup());
+            courseDto.getCourse_id(),
+            courseDto.getCourse_name(),
+            courseDto.getDescription(),
+            courseDto.getAge_group());
     return courseRepository.save(addedCourse);
   }
 
   @Override
-  public Course getCourseById(Long courseId) {
+  public Course getCourseById(String courseId) {
     return courseRepository
-        .findById(courseId)
+        .findByCourseId(courseId)
         .orElseThrow(
             () ->
                 new EntityNotFoundException(
                     "Course with Id : " + courseId.toString() + " not found"));
+  }
+
+  @Override
+  public List<Course> getCoursesByAgeGroup(String ageGroup) {
+    AgeGroup courseAgeGroup;
+    try{
+       courseAgeGroup =  Enum.valueOf(AgeGroup.class,ageGroup);
+    }catch (IllegalArgumentException e){
+      throw new IllegalArgumentException("Invalid Age group specified: " + ageGroup);
+    }
+    return courseRepository.findByAgeGroup(courseAgeGroup);
   }
 }

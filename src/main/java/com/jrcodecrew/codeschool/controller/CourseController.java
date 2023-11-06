@@ -1,6 +1,7 @@
 package com.jrcodecrew.codeschool.controller;
 
 import com.jrcodecrew.codeschool.dto.ChildDto;
+import com.jrcodecrew.codeschool.dto.CourseDto;
 import com.jrcodecrew.codeschool.dto.LoginDto;
 import com.jrcodecrew.codeschool.dto.UserDto;
 import com.jrcodecrew.codeschool.model.Child;
@@ -28,13 +29,20 @@ public class CourseController {
   }
 
   @PostMapping("/addCourse")
-  public ResponseEntity<Course> addCourse(@RequestBody Course course) {
-    return new ResponseEntity<Course>(courseService.addCourse(course), HttpStatus.CREATED);
+  public ResponseEntity<Course> addCourse(@RequestBody CourseDto courseDto) {
+    return new ResponseEntity<Course>(courseService.addCourse(courseDto), HttpStatus.CREATED);
   }
 
   @GetMapping("/getCourse/{courseId}")
-  public ResponseEntity<Course> getCourseById(@PathVariable Long courseId) {
+  public ResponseEntity<Course> getCourseById(@PathVariable String courseId) {
     Course course = courseService.getCourseById(courseId);
     return ResponseEntity.ok(course);
   }
+
+  @GetMapping("/getCourses")
+  public ResponseEntity<List<Course>> getCoursesByAgeGroup(@RequestParam String ageGroup) {
+    List<Course> course = courseService.getCoursesByAgeGroup(ageGroup);
+    return ResponseEntity.ok(course);
+  }
+
 }
