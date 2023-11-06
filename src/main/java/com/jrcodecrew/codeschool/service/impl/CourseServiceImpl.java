@@ -25,10 +25,10 @@ public class CourseServiceImpl implements CourseService {
   public Course addCourse(CourseDto courseDto) {
     Course addedCourse =
         new Course(
-            courseDto.getCourse_id(),
-            courseDto.getCourse_name(),
+            courseDto.getCourseId(),
+            courseDto.getCourseName(),
             courseDto.getDescription(),
-            courseDto.getAge_group());
+            courseDto.getAgeGroup());
     return courseRepository.save(addedCourse);
   }
 
