@@ -31,9 +31,6 @@ public class Instructor {
   @Column(name = "proficiency", nullable = false)
   private String proficiency;
 
-  @ManyToMany(mappedBy = "instructors")
-  private Set<Course> courses = new HashSet<>();
-
   public Instructor() {}
 
   public Instructor(
@@ -100,14 +97,6 @@ public class Instructor {
     this.proficiency = proficiency;
   }
 
-  public Set<Course> getCourses() {
-    return courses;
-  }
-
-  public void setCourses(Set<Course> courses) {
-    this.courses = courses;
-  }
-
   @Override
   public String toString() {
     return "Instructor{"
@@ -129,9 +118,6 @@ public class Instructor {
         + yearsOfExperience
         + ", proficiency='"
         + proficiency
-        + '\''
-        + ", courses="
-        + courses
         + '}';
   }
 }
