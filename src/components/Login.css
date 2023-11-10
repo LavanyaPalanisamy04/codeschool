@@ -1,0 +1,41 @@
+/* File: Login.css */
+.login-container {
+  text-align: center;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #f7f7f7; /* Light gray background */
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-top: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px; /* Increased padding for better input field appearance */
+  margin: 10px 0;
+  border: 2px solid #ccc; /* Slightly thicker border */
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
