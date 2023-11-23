@@ -9,6 +9,15 @@ public class EnrollmentDto {
   private Long instructorId;
   private EnrollmentStatus status;
 
+  private String link;
+
+
+  public EnrollmentDto(Long childId, String courseId, Long instructorId) {
+    this.childId = childId;
+    this.courseId = courseId;
+    this.instructorId = instructorId;
+  }
+
   public EnrollmentDto() {}
 
   public Long getChildId() {
